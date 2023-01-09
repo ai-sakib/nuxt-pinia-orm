@@ -1,7 +1,7 @@
 <template>
     <div class="flex gap-2">
         <select
-            class="px-1 border rounded-sm border-cyan-500 focus:outline-none focus:ring-2 focus:ring-cyan-600 focus:border-transparent"
+            class="px-2 border rounded-sm border-cyan-500 focus:outline-none focus:ring-1 focus:ring-cyan-600 focus:border-transparent"
             v-model="userId"
         >
             <option value="">--- Select Author ---</option>
@@ -11,7 +11,7 @@
         </select>
         <input
             type="text"
-            class="px-1 border rounded-sm border-cyan-500 focus:outline-none focus:ring-2 focus:ring-cyan-600 focus:border-transparent"
+            class="px-2 border rounded-sm border-cyan-500 focus:outline-none focus:ring-1 focus:ring-cyan-600 focus:border-transparent"
             v-model="newTodo"
             ref="todoInputRef"
             @keyup.enter="addOrEditTodo"
