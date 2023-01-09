@@ -17,7 +17,7 @@ export const userStore = defineStore('userStore', {
         },
 
         saveUser: async name => {
-            const user = useRepo(User).save({ name: name })
+            const user = await useRepo(User).save({ name: name })
             return Promise.resolve(user)
         },
 
@@ -31,7 +31,7 @@ export const userStore = defineStore('userStore', {
         },
 
         deleteUser: async id => {
-            const deletedUser = useRepo(User).destroy(id)
+            const deletedUser = await useRepo(User).destroy(id)
             return Promise.resolve(deletedUser)
         },
     },
