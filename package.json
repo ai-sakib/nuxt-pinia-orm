@@ -1,0 +1,27 @@
+{
+  "private": true,
+  "scripts": {
+    "build": "nuxt build",
+    "dev": "nuxt dev",
+    "generate": "nuxt generate",
+    "preview": "nuxt preview",
+    "postinstall": "nuxt prepare"
+  },
+  "devDependencies": {
+    "@nuxt/test-utils": "^3.0.0",
+    "autoprefixer": "^10.4.13",
+    "nuxt": "3.0.0",
+    "postcss": "^8.4.20",
+    "tailwindcss": "^3.2.4",
+    "vitest": "^0.26.3"
+  },
+  "dependencies": {
+    "@pinia-orm/nuxt": "^1.1.6",
+    "@pinia/nuxt": "^0.4.6",
+    "@vuex-orm/core": "^0.36.4",
+    "nanoid": "^4.0.0",
+    "pinia": "^2.0.28",
+    "vue": "^3.2.45",
+    "vuex": "^4.0.2"
+  }
+}
