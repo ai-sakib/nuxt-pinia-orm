@@ -6,16 +6,21 @@ export const todoStore = defineStore('todoStore', {
     state: () => {
         return {
             editableItemValue: null,
+            sortByValue: 'asc',
         }
     },
     getters: {
         editableItem: state => state.editableItemValue,
+        sortBy: state => state.sortByValue,
     },
     actions: {
         setEditableItem(item) {
             this.editableItemValue = item
         },
 
+        setSortBy() {
+            this.sortByValue = this.sortByValue === 'asc' ? 'desc' : 'asc'
+        },
         saveTodo: async todo => {
             const savedTodo = await useRepo(Todo).save({
                 title: todo.title,

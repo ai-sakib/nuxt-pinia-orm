@@ -1,5 +1,5 @@
 <template>
-    <div class="mt-4">
+    <div>
         <table class="w-full">
             <thead>
                 <tr
@@ -15,7 +15,7 @@
                 <tr v-for="(todo, index) in todos" :key="todo.id">
                     <td :class="tdClass">{{ index + 1 }}</td>
                     <td :class="tdClass">
-                        {{ todo.user?.name || 'Unknown' }}
+                        {{ todo.author || 'Unknown' }}
                     </td>
                     <td :class="tdClass">{{ todo.title }}</td>
                     <td :class="tdClass"><TodoItem :todo="todo" /></td>
@@ -30,13 +30,16 @@ import { computed } from 'vue'
 import Todo from '@/models/Todo'
 import TodoItem from './TodoItem.vue'
 import { useRepo } from 'pinia-orm'
+import { todoStore } from '~~/store/todoStore'
+const store = todoStore()
+const sortBy = computed(() => store.sortBy)
 
 const tdClass = 'border px-2 py-1'
 
 const todoRepo = useRepo(Todo)
 
 const todos = computed(() => {
-    return todoRepo.with('user').get()
+    return useRepo(Todo).with('user').orderBy('title', sortBy.value).get()
 })
 </script>
 

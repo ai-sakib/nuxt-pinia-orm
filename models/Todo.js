@@ -13,4 +13,8 @@ export default class Todo extends Model {
             user: this.belongsTo(User, 'userId'),
         }
     }
+
+    get author() {
+        return `${this.user?.name}`
+    }
 }
