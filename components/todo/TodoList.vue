@@ -34,7 +34,7 @@ import { todoStore } from '~~/store/todoStore'
 const store = todoStore()
 const sortBy = computed(() => store.sortBy)
 
-const tdClass = 'border px-2 py-1'
+const tdClass = 'border border-gray-300 px-2 py-1'
 
 const todoRepo = useRepo(Todo)
 

@@ -1,5 +1,7 @@
 <template>
-    <div class="mt-4">
+    <div
+        class="h-screen p-4 bg-gradient-to-l from-gray-400 via-gray-200 to-gray-100"
+    >
         <nav class="flex flex-row justify-center gap-2">
             <ul class="flex gap-2">
                 <li><NuxtLink to="/">Home</NuxtLink></li>
