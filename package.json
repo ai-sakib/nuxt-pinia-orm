@@ -23,5 +23,11 @@
     "pinia": "^2.0.28",
     "vue": "^3.2.45",
     "vuex": "^4.0.2"
-  }
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/sakib2439/nuxt-pinia-orm.git"
+  },
+  "author": "Md Asiful Islam Sakib",
+  "license": "MIT"
 }
