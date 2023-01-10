@@ -11,7 +11,10 @@
                     <td :class="tdClass" class="text-center">Action</td>
                 </tr>
             </thead>
-            <TransitionGroup name="list" tag="tbody">
+            <!-- {{
+                authors[1].todos
+            }} -->
+            <!-- <TransitionGroup name="list" tag="tbody">
                 <tr v-for="(todo, index) in todos" :key="todo.id">
                     <td :class="tdClass">{{ index + 1 }}</td>
                     <td :class="tdClass">
@@ -20,6 +23,18 @@
                     <td :class="tdClass">{{ todo.title }}</td>
                     <td :class="tdClass"><TodoItem :todo="todo" /></td>
                 </tr>
+            </TransitionGroup> -->
+            <TransitionGroup name="list" tag="tbody">
+                <template v-for="author in authors" :key="author.id">
+                    <tr v-for="(todo, index) in author.todos" :key="todo.id">
+                        <td :class="tdClass">{{ index + 1 }}</td>
+                        <td :class="tdClass">
+                            {{ author.name || 'Unknown' }}
+                        </td>
+                        <td :class="tdClass">{{ todo.title }}</td>
+                        <td :class="tdClass"><TodoItem :todo="todo" /></td>
+                    </tr>
+                </template>
             </TransitionGroup>
         </table>
     </div>
@@ -28,6 +43,7 @@
 <script setup>
 import { computed } from 'vue'
 import Todo from '@/models/Todo'
+import User from '@/models/User'
 import TodoItem from './TodoItem.vue'
 import { useRepo } from 'pinia-orm'
 import { todoStore } from '~~/store/todoStore'
@@ -41,6 +57,15 @@ const todoRepo = useRepo(Todo)
 const todos = computed(() => {
     return useRepo(Todo).with('user').orderBy('title', sortBy.value).get()
 })
+
+const authors = computed(() =>
+    useRepo(User)
+        .with('todos', query => {
+            query.orderBy('title', sortBy.value)
+        })
+        .orderBy('name', sortBy.value)
+        .get()
+)
 </script>
 
 <style>

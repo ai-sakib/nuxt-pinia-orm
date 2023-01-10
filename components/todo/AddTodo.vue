@@ -76,12 +76,14 @@ watchEffect(() => {
     }
 })
 
-const checkValidity = () => {
-    if (userId.value === '' || newTodo.value === '') return
-}
+const checkValidity = () =>
+    userId.value.trim() === '' || newTodo.value.trim() === ''
+
 const addOrEditTodo = async e => {
     e.preventDefault()
-    checkValidity()
+    const isNotValidated = checkValidity()
+    if (isNotValidated) return
+
     const todo = {
         id: currentTodo.value?.id,
         title: newTodo.value,

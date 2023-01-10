@@ -1,5 +1,6 @@
 import { defineStore } from 'pinia'
 import User from '@/models/User'
+import Todo from '@/models/Todo'
 import { useRepo } from 'pinia-orm'
 
 export const userStore = defineStore('userStore', {
@@ -32,6 +33,9 @@ export const userStore = defineStore('userStore', {
 
         deleteUser: async id => {
             const deletedUser = await useRepo(User).destroy(id)
+            if (deletedUser) {
+                await useRepo(Todo).where('userId', id).delete()
+            }
             return Promise.resolve(deletedUser)
         },
     },
