@@ -1,6 +1,6 @@
 <template>
     <div
-        class="h-screen p-4 bg-gradient-to-l from-gray-400 via-gray-200 to-gray-100"
+        class="h-screen p-4 bg-gradient-to-tl from-gray-400 via-gray-200 to-gray-100 bg-grad"
     >
         <nav class="flex flex-row justify-center gap-2">
             <ul class="flex gap-2">
