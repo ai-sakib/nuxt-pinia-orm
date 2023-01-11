@@ -1,7 +1,7 @@
 <template>
     <div>
         <div class="flex gap-2">
-            <span>Sort By Book:</span>
+            <span>Sort By</span>
             <button
                 @click.prevent="sort"
                 class="w-16 px-2 py-.5 rounded-sm bg-cyan-500 text-white"

@@ -5,35 +5,30 @@
                 <tr
                     class="bg-gradient-to-r from-cyan-500 via-sky-500 to-blue-500 text-white font-semibold"
                 >
-                    <td :class="tdClass">SL</td>
+                    <!-- <td :class="tdClass">SL</td> -->
                     <td :class="tdClass">Author</td>
                     <td :class="tdClass">Book Name</td>
                     <td :class="tdClass" class="text-center">Action</td>
                 </tr>
             </thead>
-            <!-- {{
-                authors[1].todos
-            }} -->
-            <!-- <TransitionGroup name="list" tag="tbody">
-                <tr v-for="(todo, index) in todos" :key="todo.id">
-                    <td :class="tdClass">{{ index + 1 }}</td>
-                    <td :class="tdClass">
-                        {{ todo.author || 'Unknown' }}
-                    </td>
-                    <td :class="tdClass">{{ todo.title }}</td>
-                    <td :class="tdClass"><TodoItem :todo="todo" /></td>
-                </tr>
-            </TransitionGroup> -->
+            <template class="hidden">
+                {{ (indexLength = 0) }}
+            </template>
             <TransitionGroup name="list" tag="tbody">
                 <template v-for="author in authors" :key="author.id">
-                    <tr v-for="(todo, index) in author.todos" :key="todo.id">
-                        <td :class="tdClass">{{ index + 1 }}</td>
+                    <tr v-for="todo in author.todos" :key="todo.id">
+                        <!-- <td :class="tdClass">
+                            {{ ++indexLength }}
+                        </td> -->
                         <td :class="tdClass">
                             {{ author.name || 'Unknown' }}
                         </td>
                         <td :class="tdClass">{{ todo.title }}</td>
                         <td :class="tdClass"><TodoItem :todo="todo" /></td>
                     </tr>
+                    <template class="hidden">{{
+                        (indexLength += author.todos.length)
+                    }}</template>
                 </template>
             </TransitionGroup>
         </table>
@@ -53,7 +48,6 @@ const sortBy = computed(() => store.sortBy)
 const tdClass = 'border border-gray-300 px-2 py-1'
 
 const todoRepo = useRepo(Todo)
-
 const todos = computed(() => {
     return useRepo(Todo).with('user').orderBy('title', sortBy.value).get()
 })
